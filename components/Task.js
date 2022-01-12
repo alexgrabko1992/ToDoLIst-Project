@@ -23,7 +23,11 @@ const Task = (props) => {
         </View>
         <Text style={styles.itemText}>{props.text}</Text>
       </View>
-      <View style={styles.circular}></View>
+      <TouchableOpacity onPress={() => props.deleteTask(props.someIndex)}>
+        <View style={styles.deleteWrapper}>
+          <Text style={styles.deleteText}>-</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -52,12 +56,26 @@ const styles = StyleSheet.create({
   itemText: {
     maxWidth: "80%",
   },
-  circular: {
-    width: 12,
-    height: 12,
-    borderColor: "#55BCF6",
-    borderWidth: 2,
-    borderRadius: 5,
+  // circular: {
+  //   width: 12,
+  //   height: 12,
+  //   borderColor: "#55BCF6",
+  //   borderWidth: 2,
+  //   borderRadius: 5,
+  // },
+  deleteWrapper: {
+    width: 30,
+    height: 30,
+    backgroundColor: "#fff",
+    borderRadius: 60,
+    justifyContent: "center",
+    alignItems: "center",
+    borderColor: "#C0C0C0",
+    borderWidth: 1,
+    backgroundColor: "#c2221f",
+  },
+  deleteText: {
+    color: "#fff",
   },
   checkbox: {
     width: "100%",

@@ -23,25 +23,27 @@ export default function App() {
     }
   };
 
-  const completeTask = (index) => {
+  const deleteTask = (index) => {
     const itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
     setTaskItems(itemsCopy);
   };
+
+  const completedTasks = (task) => {};
 
   return (
     <View style={styles.container}>
       {/* To do list */}
       <View style={styles.taskWrapper}>
         <Text style={styles.sectionTitle}>Today's tasks</Text>
-        <Text>Number of task's: {taskItems.length}</Text>
+        <Text>Number of tasks: {taskItems.length}</Text>
 
         <View style={styles.items}>
           {/* Items to do */}
           {taskItems.map((item, index) => {
             return (
-              <TouchableOpacity key={index} onPress={() => completeTask(index)}>
-                <Task text={item} />
+              <TouchableOpacity key={index}>
+                <Task text={item} deleteTask={deleteTask} someIndex={index} />
               </TouchableOpacity>
             );
           })}
@@ -113,6 +115,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderColor: "#C0C0C0",
     borderWidth: 1,
+    backgroundColor: "#189407",
   },
-  addText: {},
+  addText: {
+    color: "#fff",
+  },
 });
