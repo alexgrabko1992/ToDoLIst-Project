@@ -46,12 +46,12 @@ export default function App() {
         {/* Filter buttons for all/completed/deleted tasks */}
         <RadioButton.Group onValueChange={taskFilter} value={checked}>
           <View style={styles.radioButtons}>
-            <Text>All</Text>
             <RadioButton value="all" />
-            <Text>Completed</Text>
+            <Text>All</Text>
             <RadioButton value="completed" />
-            <Text>Unfinished</Text>
+            <Text>Completed</Text>
             <RadioButton value="unfinished" />
+            <Text>Unfinished</Text>
           </View>
         </RadioButton.Group>
 
