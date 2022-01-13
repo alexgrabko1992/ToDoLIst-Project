@@ -10,20 +10,21 @@ import {
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../redux/todoSlice";
+import { useSelector } from "react-redux";
 
 const AddTask = () => {
   const [value, setValue] = useState();
 
   const dispatch = useDispatch();
 
+  const todos = useSelector((state) => state.todos);
+
   const handleAddTask = () => {
     Keyboard.dismiss();
-    // if (taskItems.length < 6) {
-    //   setTaskItems([...taskItems, task]);
-    //   setTask(null);
-    // }
-    dispatch(addTodo({ title: value }));
-    setValue(null);
+    if (todos.length < 5) {
+      dispatch(addTodo({ title: value }));
+      setValue(null);
+    }
   };
 
   return (

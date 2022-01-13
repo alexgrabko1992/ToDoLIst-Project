@@ -11,7 +11,6 @@ import { useDispatch } from "react-redux";
 import { toggleComplete, deleteTodo } from "../redux/todoSlice";
 
 const Task = ({ id, title, completed }) => {
-  // const [isSelected, setSelection] = useState(false);
   const dispatch = useDispatch();
 
   const handleCompleteToggle = () => {
