@@ -7,9 +7,20 @@ import {
   TouchableOpacity,
 } from "react-native";
 import CheckBox from "expo-checkbox";
+import { useDispatch } from "react-redux";
+import { toggleComplete, deleteTodo } from "../redux/todoSlice";
 
-const Task = (props) => {
-  const [isSelected, setSelection] = useState(false);
+const Task = ({ id, title, completed }) => {
+  // const [isSelected, setSelection] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleCompleteToggle = () => {
+    dispatch(toggleComplete({ id: id, completed: !completed }));
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteTodo({ id: id }));
+  };
 
   return (
     <View style={styles.item}>
@@ -17,13 +28,13 @@ const Task = (props) => {
         <View style={styles.square}>
           <CheckBox
             style={styles.checkbox}
-            value={isSelected}
-            onValueChange={setSelection}
+            value={completed}
+            onValueChange={handleCompleteToggle}
           />
         </View>
-        <Text style={styles.itemText}>{props.text}</Text>
+        <Text style={styles.itemText}>{title}</Text>
       </View>
-      <TouchableOpacity onPress={() => props.deleteTask(props.someIndex)}>
+      <TouchableOpacity onPress={handleDelete}>
         <View style={styles.deleteWrapper}>
           <Text style={styles.deleteText}>-</Text>
         </View>
