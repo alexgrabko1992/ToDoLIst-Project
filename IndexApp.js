@@ -1,6 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import Task from "./components/TaskItem";
 import AddTask from "./components/AddTask";
 import TotalCompleteItems from "./components/TotalCompleteItems";
@@ -50,18 +56,20 @@ export default function App() {
         </RadioButton.Group>
 
         <View style={styles.items}>
-          {/* All task items */}
-          {filtered.map((todo) => {
-            return (
-              <TouchableOpacity>
-                <Task
-                  id={todo.id}
-                  title={todo.title}
-                  completed={todo.completed}
-                />
-              </TouchableOpacity>
-            );
-          })}
+          <ScrollView>
+            {/* All task items */}
+            {filtered.map((todo) => {
+              return (
+                <TouchableOpacity key={todo.id}>
+                  <Task
+                    id={todo.id}
+                    title={todo.title}
+                    completed={todo.completed}
+                  />
+                </TouchableOpacity>
+              );
+            })}
+          </ScrollView>
         </View>
       </View>
 

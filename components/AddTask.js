@@ -13,6 +13,8 @@ import { addTodo } from "../redux/todoSlice";
 import { useSelector } from "react-redux";
 
 const AddTask = () => {
+  const lengthOfTask = 50;
+
   const [value, setValue] = useState();
 
   const dispatch = useDispatch();
@@ -21,7 +23,7 @@ const AddTask = () => {
 
   const handleAddTask = () => {
     Keyboard.dismiss();
-    if (todos.length < 5) {
+    if (todos.length < 20) {
       dispatch(addTodo({ title: value }));
       setValue(null);
     }
@@ -36,7 +38,11 @@ const AddTask = () => {
         style={styles.input}
         placeholder={"Write a task"}
         value={value}
-        onChangeText={(value) => setValue(value)}
+        onChangeText={(value) =>
+          value.length < lengthOfTask
+            ? setValue(value)
+            : setValue(value.slice(0, lengthOfTask))
+        }
       />
       <TouchableOpacity onPress={handleAddTask}>
         <View style={styles.addWrapper}>
